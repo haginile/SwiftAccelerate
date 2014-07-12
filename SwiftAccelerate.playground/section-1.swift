@@ -61,7 +61,7 @@ func invert(matrix : [Double]) -> [Double] {
     
     var inMatrix = matrix
     
-    var N = __CLPK_integer(vDSP_Length(sqrt(Double(matrix.count))))
+    var N = __CLPK_integer(sqrt(Double(matrix.count)))
     
     var pivot : __CLPK_integer = 0
     var workspace = 0.0

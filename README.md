@@ -143,7 +143,7 @@ $$ \begin{pmatrix} 1 & 2 \\\ 3 & 4 \end{pmatrix}^{-1} = \begin{pmatrix} -2 & 1 \
         var workspace = 0.0
         var error : __CLPK_integer = 0
         
-        var N = __CLPK_integer(vDSP_Length(sqrt(Double(matrix.count))))
+        var N = __CLPK_integer(sqrt(Double(matrix.count)))
         dgetrf_(&N, &N, &inMatrix, &N, &pivot, &error)
         
         if error != 0 {
