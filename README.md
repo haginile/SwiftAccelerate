@@ -1,7 +1,7 @@
 SwiftAccelerate
 ===============
 
-This post provides a concise tutorial on how you may use Apple's `Accelerate` framework with the Swift programming language to perform vector/matrix manipulations, including matrix transposes, dot products, matrix inversions, etc.
+This note provides a concise tutorial on how you may use Apple's `Accelerate` framework with the Swift programming language to perform vector/matrix manipulations, including matrix transposes, dot products, matrix inversions, etc. A playground illustrating all the functions discussed here is included. Also, a better formatted version can be accessed at [here](https://swift.versify-app.com/post/usehnl/). 
 
 Linking Your Project Against `Accelerate`
 -----------------------------------
