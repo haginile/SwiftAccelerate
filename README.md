@@ -31,27 +31,32 @@ The `1`s tells the function to operate on each element of the vector. If you rep
 
 ![](http://mathurl.com/ldrpp8j.png)
 
-    var v = [1.0, 2.0]
-    var s = 3.0
-    var vsresult = [Double](count : v.count, repeatedValue : 0.0)
-    vDSP_vsaddD(v, 1, &s, &vsresult, 1, vDSP_Length(v.count))
-    vsresult    // returns [4.0, 5.0]
+```swift
+var v = [1.0, 2.0]
+var s = 3.0
+var vsresult = [Double](count : v.count, repeatedValue : 0.0)
+vDSP_vsaddD(v, 1, &s, &vsresult, 1, vDSP_Length(v.count))
+vsresult    // returns [4.0, 5.0]
+```
 
 <!--$$ \begin{pmatrix} 1 \\\ 2 \end{pmatrix} \times 3 = \begin{pmatrix} 3 \\\ 6 \end{pmatrix} $$-->
 
 ![](http://mathurl.com/p6uk25z.png)
 
-    vDSP_vsmulD(v, 1, &s, &vsresult, 1, vDSP_Length(v.count))
-    vsresult    // returns [3.0, 6.0]
+```swift
+vDSP_vsmulD(v, 1, &s, &vsresult, 1, vDSP_Length(v.count))
+vsresult    // returns [3.0, 6.0]
+```
 
 
 <!--$$ \begin{pmatrix} 1 \\\ 2 \end{pmatrix} \div 3 = \begin{pmatrix} 1/3 \\\ 2/3 \end{pmatrix} $$-->
 
 ![](http://mathurl.com/om9qrak.png)
 
-    vDSP_vsdivD(v, 1, &s, &vsresult, 1, vDSP_Length(v.count))
-    vsresult    // returns [0.333333333333333, 0.666666666666667]
-
+```swift
+vDSP_vsdivD(v, 1, &s, &vsresult, 1, vDSP_Length(v.count))
+vsresult    // returns [0.333333333333333, 0.666666666666667]
+```
 
 Vector & Vector
 --------------
@@ -66,25 +71,30 @@ Here are a few worked-out examples:
 
 ![](http://mathurl.com/kftp8ub.png)
 
-    var v1 = [2.0, 5.0]
-    var v2 = [3.0, 4.0]
-    var vvresult = [Double](count : 2, repeatedValue : 0.0)
-    vDSP_vaddD(v1, 1, v2, 1, &vvresult, 1, vDSP_Length(v1.count))
-    vvresult    // returns [5.0, 9.0]
+```swift
+var v1 = [2.0, 5.0]
+var v2 = [3.0, 4.0]
+var vvresult = [Double](count : 2, repeatedValue : 0.0)
+vDSP_vaddD(v1, 1, v2, 1, &vvresult, 1, vDSP_Length(v1.count))
+vvresult    // returns [5.0, 9.0]
+```
 
 <!--$$ \begin{pmatrix} 2 \\\ 5 \end{pmatrix}  \begin{pmatrix} 3 \\\ 4 \end{pmatrix} = \begin{pmatrix} 6 \\\ 20 \end{pmatrix} $$-->
 ![](http://mathurl.com/mkuokxm.png)
     
-    vDSP_vmulD(v1, 1, v2, 1, &vvresult, 1, vDSP_Length(v1.count))
-    vvresult    // returns [6.0, 20.0]
+```swift
+vDSP_vmulD(v1, 1, v2, 1, &vvresult, 1, vDSP_Length(v1.count))
+vvresult    // returns [6.0, 20.0]
+```
 
 <!--$$ \begin{pmatrix} 3 \\\ 4 \end{pmatrix} {\bigg/} \begin{pmatrix} 2 \\\ 5 \end{pmatrix} = \begin{pmatrix} 1.5 \\\ 0.8 \end{pmatrix} $$-->
 
 ![](http://mathurl.com/mgqj5zx.png)
 
-    
-    vDSP_vdivD(v1, 1, v2, 1, &vvresult, 1, vDSP_Length(v1.count))
-    vvresult    // returns [1.5, 0.8]
+```swift
+vDSP_vdivD(v1, 1, v2, 1, &vvresult, 1, vDSP_Length(v1.count))
+vvresult    // returns [1.5, 0.8]
+```
 
 Dot Product
 ----------
@@ -93,11 +103,13 @@ Dot Product
 
 ![](http://mathurl.com/m8qlfvf.png)
 
-    var v3 = [1.0, 2.0]
-    var v4 = [3.0, 4.0]
-    var dpresult = 0.0
-    vDSP_dotprD(v3, 1, v4, 1, &dpresult, vDSP_Length(v3.count))
-    dpresult    // returns 11.0
+```swift
+var v3 = [1.0, 2.0]
+var v4 = [3.0, 4.0]
+var dpresult = 0.0
+vDSP_dotprD(v3, 1, v4, 1, &dpresult, vDSP_Length(v3.count))
+dpresult    // returns 11.0
+```
 
 Matrix Multiplication
 -----------------
@@ -106,9 +118,11 @@ Matrices are passed into `Accelerate` as 1D arrays. As a result, matrix addition
 
 Matrix multiplication, on the other hand, is a bit more involved and requires this function:
 
-    vDSP_mmulD(matrix_1, 1, matrix_2, 1, &result, 1, 
-               rows_of_matrix_1, columns_of_matrix_2, 
-               columns_of_matrix_1_or_rows_of_matrix_2)
+```swift
+vDSP_mmulD(matrix_1, 1, matrix_2, 1, &result, 1, 
+           rows_of_matrix_1, columns_of_matrix_2, 
+           columns_of_matrix_1_or_rows_of_matrix_2)
+```
 
 For example,
 
@@ -116,20 +130,23 @@ For example,
 
 ![](http://mathurl.com/mkx7vm4.png)
     
+```swift
     var m1 = [ 3.0, 2.0, 4.0, 5.0, 6.0, 7.0 ]
     var m2 = [ 10.0, 20.0, 30.0, 30.0, 40.0, 50.0]
     var mresult = [Double](count : 9, repeatedValue : 0.0)
 
     vDSP_mmulD(m1, 1, m2, 1, &mresult, 1, 3, 3, 2)
     mresult    // returns [90.0, 140.0, 190.0, 280.0, 370.0, 270.0, 400.0, 530.0]
-
+```
 
 Matrix Transpose
 --------------
 
 Matrix transpose can be obtained with 
 
-    vDSP_mtransD(matrix, 1, &result, 1, number_of_rows_of_result, number_of_columns_of_result)    
+```swift
+    vDSP_mtransD(matrix, 1, &result, 1, number_of_rows_of_result, number_of_columns_of_result)  
+```
 
 Like this,
 
@@ -137,10 +154,12 @@ Like this,
 
 ![](http://mathurl.com/l65mgv5.png)
 
+```swift
     var t = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     var mtresult = [Double](count : t.count, repeatedValue : 0.0)
     vDSP_mtransD(t, 1, &mtresult, 1, 3, 2)
     mtresult    // returns [1.0, 4.0, 2.0, 5.0, 3.0, 6.0]
+```
 
 
 Matrix Inversion
@@ -152,6 +171,7 @@ Matrix inversion takes a bit more effort, but can be accomplished with the funct
 
 ![](http://mathurl.com/qgypepv.png)    
 
+```swift
     func invert(matrix : [Double]) -> [Double] {
         
         var inMatrix = matrix
@@ -174,5 +194,6 @@ Matrix inversion takes a bit more effort, but can be accomplished with the funct
 
     var m = [1.0, 2.0, 3.0, 4.0]
     invert(m)    // returns [-2.0, 1.0, 1.5, -0.5]
+```
 
 
