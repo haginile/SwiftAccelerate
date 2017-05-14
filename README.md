@@ -173,24 +173,15 @@ Matrix inversion takes a bit more effort, but can be accomplished with the funct
 
 ```swift
     func invert(matrix : [Double]) -> [Double] {
-        
         var inMatrix = matrix
-        
-        var pivot : __CLPK_integer = 0
-        var workspace = 0.0
-        var error : __CLPK_integer = 0
-        
         var N = __CLPK_integer(sqrt(Double(matrix.count)))
-        dgetrf_(&N, &N, &inMatrix, &N, &pivot, &error)
-        
-        if error != 0 {
-            return inMatrix
-        }
-        
-        dgetri_(&N, &inMatrix, &N, &pivot, &workspace, &N, &error)
+        var pivots = [__CLPK_integer](repeating: 0, count: Int(N))
+        var workspace = [Double](repeating: 0.0, count: Int(N))
+        var error : __CLPK_integer = 0
+        dgetrf_(&N, &N, &inMatrix, &N, &pivots, &error)
+        dgetri_(&N, &inMatrix, &N, &pivots, &workspace, &N, &error)
         return inMatrix
     }
-
 
     var m = [1.0, 2.0, 3.0, 4.0]
     invert(m)    // returns [-2.0, 1.0, 1.5, -0.5]
